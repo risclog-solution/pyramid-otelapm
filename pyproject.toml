@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyramid-otelapm"
-version = "1.0.1"
+version = "1.0.2.dev0"
 description = "OpenTelemetry APM integration for the Pyramid framework"
 readme = "README.rst"
 license = { text = "BSD" }
