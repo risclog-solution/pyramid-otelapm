@@ -2,6 +2,64 @@
 requires = ["setuptools>=40.6.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "pyramid-otelapm"
+version = "1.0.1.dev0"
+description = "OpenTelemetry APM integration for the Pyramid framework"
+readme = "README.rst"
+license = { text = "BSD" }
+authors = [
+    { name = "Sebastian Wehrmann (riscLOG Solution GmbH)", email = "sebastian@risclog.com" },
+]
+keywords = ["opentelemetry", "otel", "apm", "pyramid"]
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+]
+requires-python = ">=3.11"
+dependencies = [
+    "opentelemetry-api",
+    "opentelemetry-exporter-otlp-proto-http",
+    "opentelemetry-instrumentation-pyramid",
+    "opentelemetry-sdk",
+    "pyramid",
+]
+
+[project.urls]
+Homepage = "https://github.com/risclog-solution/pyramid-otelapm"
+
+[project.optional-dependencies]
+requests = ["opentelemetry-instrumentation-requests"]
+botocore = ["opentelemetry-instrumentation-botocore"]
+sqlalchemy = ["opentelemetry-instrumentation-sqlalchemy"]
+logging = ["opentelemetry-instrumentation-logging"]
+test = [
+    "pytest",
+    "pytest-cache",
+    "pytest-cov",
+    "pytest-rerunfailures",
+    "pytest-sugar",
+    "webtest",
+    "pytest_localserver",
+    "opentelemetry-instrumentation-requests",
+    "opentelemetry-instrumentation-botocore",
+    "opentelemetry-instrumentation-sqlalchemy",
+    "opentelemetry-instrumentation-logging",
+    "sqlalchemy",
+    "boto3",
+]
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.coverage.run]
 relative_files = true
 parallel = true

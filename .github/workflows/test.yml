@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    uses: risclog-solution/gha_workflow_templates/.github/workflows/pytest_appenv.yml@master
+    uses: risclog-solution/gha_workflow_templates/.github/workflows/pytest_uv.yml@master
     with:
       versions: >-
         ["3.11", "3.12"]
