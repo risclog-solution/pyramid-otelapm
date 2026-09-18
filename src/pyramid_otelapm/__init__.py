@@ -122,9 +122,7 @@ def setup_tracing(settings):
     service_version = "unknown"
     if service_distribution:
         try:
-            service_version = importlib.metadata.version(
-                service_distribution
-            )
+            service_version = importlib.metadata.version(service_distribution)
         except importlib.metadata.PackageNotFoundError:
             pass
 
@@ -157,18 +155,14 @@ def _instrument_optional_libraries():
     once, regardless of how many engines/clients are created afterwards.
     """
     try:
-        from opentelemetry.instrumentation.requests import (
-            RequestsInstrumentor,
-        )
+        from opentelemetry.instrumentation.requests import RequestsInstrumentor
     except ImportError:
         pass
     else:
         RequestsInstrumentor().instrument()
 
     try:
-        from opentelemetry.instrumentation.botocore import (
-            BotocoreInstrumentor,
-        )
+        from opentelemetry.instrumentation.botocore import BotocoreInstrumentor
     except ImportError:
         pass
     else:
@@ -184,9 +178,7 @@ def _instrument_optional_libraries():
         SQLAlchemyInstrumentor().instrument()
 
     try:
-        from opentelemetry.instrumentation.logging import (
-            LoggingInstrumentor,
-        )
+        from opentelemetry.instrumentation.logging import LoggingInstrumentor
     except ImportError:
         pass
     else:
@@ -201,9 +193,7 @@ def _configure_excluded_urls(settings):
     Must run before ``opentelemetry.instrumentation.pyramid`` is imported
     for the first time, since it reads the env var once at import time.
     """
-    patterns = settings.get(
-        "opentelemetry.transactions_ignore_patterns", ""
-    ).split()
+    patterns = settings.get("opentelemetry.transactions_ignore_patterns", "").split()
     if not patterns:
         return
     existing = os.environ.get(EXCLUDED_URLS_ENV_VAR, "")

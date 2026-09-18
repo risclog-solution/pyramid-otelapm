@@ -7,7 +7,7 @@ from pytest_localserver.http import ContentServer
 
 @pytest.fixture()
 def otelserver(request):
-    config = getattr(request, 'param', {})
+    config = getattr(request, "param", {})
     server = ContentServer(**config)
     server.start()
     wait_for_http_server(server)
@@ -57,17 +57,13 @@ def reset_pyramid_otelapm_state():
 def _optional_instrumentor_classes():
     classes = []
     try:
-        from opentelemetry.instrumentation.requests import (
-            RequestsInstrumentor,
-        )
+        from opentelemetry.instrumentation.requests import RequestsInstrumentor
 
         classes.append(RequestsInstrumentor)
     except ImportError:
         pass
     try:
-        from opentelemetry.instrumentation.botocore import (
-            BotocoreInstrumentor,
-        )
+        from opentelemetry.instrumentation.botocore import BotocoreInstrumentor
 
         classes.append(BotocoreInstrumentor)
     except ImportError:
@@ -81,9 +77,7 @@ def _optional_instrumentor_classes():
     except ImportError:
         pass
     try:
-        from opentelemetry.instrumentation.logging import (
-            LoggingInstrumentor,
-        )
+        from opentelemetry.instrumentation.logging import LoggingInstrumentor
 
         classes.append(LoggingInstrumentor)
     except ImportError:
@@ -95,9 +89,7 @@ def wait_for_http_server(httpserver, timeout=30):
     start_time = time.time()
     while True:
         try:
-            sock = socket.create_connection(
-                httpserver.server_address, timeout=0.1
-            )
+            sock = socket.create_connection(httpserver.server_address, timeout=0.1)
             sock.close()
             break
         except socket.error:
