@@ -6,7 +6,7 @@ Change log for pyramid-otelapm
 1.0.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- fix: Add traceid information to python logs.
 
 
 1.0.0 (2026-09-18)

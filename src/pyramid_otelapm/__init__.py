@@ -182,7 +182,9 @@ def _instrument_optional_libraries():
     except ImportError:
         pass
     else:
-        LoggingInstrumentor().instrument(set_logging_format=False)
+        LoggingInstrumentor().instrument(
+            set_logging_format=False, inject_trace_context=True
+        )
 
 
 def _configure_excluded_urls(settings):
